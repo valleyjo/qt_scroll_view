@@ -10,7 +10,7 @@ int main(int argc, char *argv[])
     QQmlApplicationEngine engine;
     LocationsSyncingListModel* model = new LocationsSyncingListModel();
     QQmlContext *ctxt = engine.rootContext();
-    ctxt->setContextProperty("cppModel", model);
+    ctxt->setContextProperty("scrollViewModel", model);
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
 
     return app.exec();

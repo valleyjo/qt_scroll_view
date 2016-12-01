@@ -13,6 +13,8 @@ Window {
     height: 240 * scale_factor
     title: qsTr("Locations Syncing")
 
+    // PRODUCT CODE BELOW THIS LINE
+
     Component {
         id: siteDelegate
 
@@ -73,8 +75,10 @@ Window {
     }
 
     ListView {
+        id: scrollView
+        objectName: scrollView
         anchors.fill: parent
-        model: cppModel
+        model: scrollViewModel
         delegate: siteDelegate
     }
 
