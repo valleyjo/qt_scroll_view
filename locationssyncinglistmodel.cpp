@@ -1,3 +1,4 @@
+#include <QDebug>
 #include "locationssyncinglistmodel.h"
 
 using namespace std;
@@ -8,16 +9,19 @@ LocationsSyncingListModel::LocationsSyncingListModel()
     info1.name = wstring(L"OneDrive - Contoso");
     info1.imageUrl = wstring(L"http://cdn.marketplaceimages.windowsphone.com/v8/images/bf05b44c-1e4f-4f31-b8a8-2d42fcf41104?imageType=ws_icon_large");
     info1.sizeOnDisk = wstring(L"455 KB");
+    info1.scopeID = wstring(L"scopeId1");
 
     SiteInfo info2;
     info2.name = wstring(L"Accounting - Contoso");
     info2.imageUrl = wstring(L"http://cdn.marketplaceimages.windowsphone.com/v8/images/bf05b44c-1e4f-4f31-b8a8-2d42fcf41104?imageType=ws_icon_large");
     info2.sizeOnDisk = wstring(L"768 MB");
+    info2.scopeID = wstring(L"scopeId2");
 
     SiteInfo info3;
     info3.name = wstring(L"Marketing - Contoso");
     info3.imageUrl = wstring(L"http://cdn.marketplaceimages.windowsphone.com/v8/images/bf05b44c-1e4f-4f31-b8a8-2d42fcf41104?imageType=ws_icon_large");
     info3.sizeOnDisk = wstring(L"4.77 GB");
+    info3.scopeID = wstring(L"scopeId3");
 
     m_siteInfoVector.push_back(info1);
     m_siteInfoVector.push_back(info2);
@@ -53,6 +57,9 @@ QVariant LocationsSyncingListModel::data(
     case imageUrl:
         retVal = QString::fromStdWString(info.imageUrl);
         break;
+    case scopeID:
+        retVal = QString::fromStdWString(info.scopeID);
+        break;
     }
     return retVal;
 }
@@ -62,5 +69,14 @@ QHash<int, QByteArray> LocationsSyncingListModel::roleNames() const {
     roles[imageUrl] = "imageUrl";
     roles[sizeOnDisk] = "sizeOnDisk";
     roles[name] = "name";
+    roles[scopeID] = "scopeID";
     return roles;
+}
+
+void LocationsSyncingListModel::OnSyncActionClicked(QString scopeID) {
+    qDebug() << "sync action clicked scope id:" << scopeID;
+}
+
+void LocationsSyncingListModel::OnChooseFoldersClicked(QString scopeID) {
+    qDebug() << "choose folders clicked:" << scopeID;
 }

@@ -15,6 +15,9 @@ Window {
 
     // PRODUCT CODE BELOW THIS LINE
 
+    signal syncActionClicked(string scopeID)
+    signal chooseFoldersClicked(string scopeID)
+
     Component {
         id: siteDelegate
 
@@ -56,6 +59,7 @@ Window {
                         anchors.fill: parent
                         cursorShape: syncAction.hoveredLink ? Qt.PointingHandCursor : Qt.ArrowCursor
                         hoverEnabled: true
+                        onClicked: window.syncActionClicked(scopeID)
                     }
                 }
                 Text {
@@ -68,6 +72,7 @@ Window {
                         anchors.fill: parent
                         cursorShape: syncAction.hoveredLink ? Qt.PointingHandCursor : Qt.ArrowCursor
                         hoverEnabled: true
+                        onClicked: window.chooseFoldersClicked(scopeID)
                     }
                 }
             }
@@ -76,7 +81,7 @@ Window {
 
     ListView {
         id: scrollView
-        objectName: scrollView
+        objectName: "scrollView"
         anchors.fill: parent
         model: scrollViewModel
         delegate: siteDelegate

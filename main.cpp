@@ -13,5 +13,18 @@ int main(int argc, char *argv[])
     ctxt->setContextProperty("scrollViewModel", model);
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
 
+    QObject* rootObject = engine.rootObjects().first();
+    QObject::connect(
+        rootObject,
+        SIGNAL(syncActionClicked(QString)),
+        model,
+        SLOT(OnSyncActionClicked(QString)));
+
+    QObject::connect(
+        rootObject,
+        SIGNAL(chooseFoldersClicked(QString)),
+        model,
+        SLOT(OnChooseFoldersClicked(QString)));
+
     return app.exec();
 }

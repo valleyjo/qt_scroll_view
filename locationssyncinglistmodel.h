@@ -12,6 +12,7 @@ public:
         imageUrl = Qt::UserRole + 1,
         name,
         sizeOnDisk,
+        scopeID,
     };
 
     LocationsSyncingListModel();
@@ -19,11 +20,16 @@ public:
     int rowCount(const QModelIndex &parent = QModelIndex()) const;
     QHash<int, QByteArray> roleNames() const;
 
+public slots:
+    void OnSyncActionClicked(QString scopeID);
+    void OnChooseFoldersClicked(QString scopeID);
+
 private:
     struct SiteInfo {
         std::wstring name;
         std::wstring sizeOnDisk;
         std::wstring imageUrl;
+        std::wstring scopeID;
     };
 
     std::vector<std::wstring> m_siteNames;
